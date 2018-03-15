@@ -8,5 +8,6 @@ namespace chanchos.Models
 	public class Class2
 	{
 		String ll;
+		String kk;
 	}
 }
