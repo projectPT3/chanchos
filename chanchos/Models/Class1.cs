@@ -11,5 +11,8 @@ public class Class1
 		String k;
 		String l;
 		String h;
+		String test;
+		String m;
+		String ll;
 	}
 }
