@@ -5,10 +5,7 @@ using System.Web;
 
 namespace chanchos.Models
 {
-	public class Class2
+	public class amir
 	{
-		String ll;
-		String kk;
-		String jj;
 	}
 }
