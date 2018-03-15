@@ -5,7 +5,8 @@ using System.Web;
 
 namespace chanchos.Models
 {
-    public class Customer
+    public class Gee
     {
+        String name;
     }
 }

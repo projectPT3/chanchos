@@ -5,8 +5,8 @@ using System.Web;
 
 namespace chanchos.Models
 {
-    public class Admin
+    public class Testing
     {
-        String name;
+        String nama;
     }
 }
