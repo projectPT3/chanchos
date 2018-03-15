@@ -204,6 +204,7 @@
     </Compile>
     <Compile Include="Models\Abc.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\amira.cs" />
     <Compile Include="Models\Customers.cs" />
     <Compile Include="Models\Diba.cs" />
     <Compile Include="Models\IdentityModels.cs" />
