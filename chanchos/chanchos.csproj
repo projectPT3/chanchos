@@ -209,6 +209,7 @@
     <Compile Include="Models\Customers.cs" />
     <Compile Include="Models\Diba.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\jadi.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Nama.cs" />
     <Compile Include="Models\Testing.cs" />
