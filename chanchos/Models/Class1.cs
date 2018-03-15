@@ -9,5 +9,6 @@ public class Class1
 		String test;
 		String le;
 		String k;
+		String l;
 	}
 }
