@@ -7,5 +7,6 @@ namespace chanchos.Models
 {
     public class Admin
     {
+        String name;
     }
 }
