@@ -7,5 +7,7 @@ public class Class1
 		String item;
 		String bane;
 		String test;
+		String le;
+		String k;
 	}
 }
