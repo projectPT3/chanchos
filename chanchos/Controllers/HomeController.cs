@@ -26,5 +26,12 @@ namespace chanchos.Controllers
 
             return View();
         }
+
+        public ActionResult Bawal()
+        {
+            ViewBag.Message = "Bawal to purchase:";
+
+            return View();
+        }
     }
 }

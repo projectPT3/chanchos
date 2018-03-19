@@ -7,6 +7,7 @@ namespace chanchos.Models
 {
     public class Admin
     {
-        String name;
+        String username { get; set; }
+        String pwd { get; set; }
     }
 }
