@@ -5,9 +5,11 @@ using System.Web;
 
 namespace chanchos.Models
 {
-    public class Admin
+    public class Product
     {
-        String username { get; set; }
-        String pwd { get; set; }
+        String pname { get; set; }
+        String pid { get; set; }
+        Double price { get; set; }
+
     }
 }
