@@ -7,6 +7,9 @@ namespace chanchos.Models
 {
     public class Customers
     {
-        String name, address;
+        public string name { get; set; }
+        public int age { get; set; }
+        public string address { get; set; }
+        public string phoneNo { get; set; }
     }
 }
