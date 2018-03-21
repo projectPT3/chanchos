@@ -7,9 +7,14 @@ namespace chanchos.Models
 {
     public class Product
     {
-        String pname { get; set; }
-        String pid { get; set; }
-        Double price { get; set; }
+        public string pid { get; set; }
+        public string pname { get; set; }
+        public double price { get; set; }
 
+
+        public void display()
+        {
+
+        }
     }
 }
