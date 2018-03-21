@@ -15,17 +15,16 @@ namespace chanchos.Controllers
             return View();
         }
 
-        public ActionResult viewProfile()
+        public ActionResult addCustomer()
+        {
+            return View();
+        }
+
+
+        public ActionResult viewProfile(Customer C)
         {
 
-            Customer C = new Customer();
-            C.name = " GEE";
-            C.age = 21;
-            C.phoneNo = "01123235315";
-            C.address = " No 155, Felda Palong Tiga.";
-
-
-            return View(C);
+            return View("viewProfile");
         }
     }
 }
