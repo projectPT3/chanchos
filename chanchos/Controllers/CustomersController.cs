@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using chanchos.Models;
 
 namespace chanchos.Controllers
 {
@@ -16,7 +17,13 @@ namespace chanchos.Controllers
 
         public ActionResult viewProfile()
         {
-            return View("ProfileCustomer");
+
+            Customer C = new Customer();
+            C.name = " GEE";
+            C.age = 21;
+
+
+            return View(C);
         }
     }
 }
