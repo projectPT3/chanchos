@@ -21,6 +21,8 @@ namespace chanchos.Controllers
             Customer C = new Customer();
             C.name = " GEE";
             C.age = 21;
+            C.phoneNo = "01123235315";
+            C.address = " No 155, Felda Palong Tiga.";
 
 
             return View(C);
