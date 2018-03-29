@@ -3,6 +3,23 @@
     ViewBag.Title = "FormAddPerson";
 }
 
+@using (Html.BeginForm("addPerson", "Person", FormMethod.Post))
+{
+    @Html.Label("Please enter name: ")
+    @Html.TextBox("name","Firdaus")<br/>
+    
+    @Html.Label("Please enter year of birth: ")
+    @Html.TextBox("yob")<br/>
+        
+    @Html.Label("Company: ")
+    @Html.TextBox("companyName")<br/>
+        
+    @Html.Label("Company contact number: ")
+    @Html.TextBox("contactNum")<br/>
+        
+}
+
+
 <h2>FormAddPerson</h2>
 <form action="addPerson" method="get">
     <b>Personal Information</b> <br />
