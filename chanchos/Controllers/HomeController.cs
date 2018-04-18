@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using chanchos.Models;
 
 namespace chanchos.Controllers
 {
@@ -27,11 +28,29 @@ namespace chanchos.Controllers
             return View();
         }
 
-        public ActionResult Bawal()
-        {
-            ViewBag.Message = "Bawal to purchase:";
+        //[HttpGet]
+        //public ActionResult viewProfile()
+        //{
+        //    ViewBag.Message = "Bawal to purchase:";
 
-            return View();
+        //    return View("viewProfile");
+        //}
+
+        //[HttpPost]
+        public ActionResult viewProfile(Customer c)
+        {
+            Customer cp = new Customer()
+            {
+                name = "Nama",
+                age = 19,
+                address = "No.99, Jln Mawar",
+                phoneNo = "012345678"
+
+            };
+
+            return View(cp);
+
+
         }
     }
 }
