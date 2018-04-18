@@ -9,6 +9,10 @@ namespace chanchos.Controllers
 {
     public class ProductController : Controller
     {
+        private string pid;
+        private string pname;
+        private double price;
+
         // GET: Product
         public ActionResult Index()
         {
@@ -17,20 +21,21 @@ namespace chanchos.Controllers
         [HttpGet]
         public ActionResult addProduct()
         {
-            return View("addProductForm");
+            return View("addProduct");
         }
 
-
-        public ActionResult addProduct(Product p)
+        [HttpPost]
+        public ActionResult ViewProduct(Product p)
         {
-            Product pp = new Product()
-            {
-                pid = "p001",
-                pname = "basikal",
-                price = 30.00
-            };
+            
 
-            return View(pp);
+
+                pid = p.pid;
+                pname = p.pname;
+                price = p.price;
+           
+
+            return View(p);
 
         }
     }

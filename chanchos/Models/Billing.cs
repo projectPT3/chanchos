@@ -7,6 +7,7 @@ namespace chanchos.Models
 {
 	public class Billing
 	{
+        
 		String customerName { get; set; }
 		String customerAddress { get; set; }
 		String phoneNo { get; set; }
