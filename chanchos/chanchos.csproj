@@ -284,11 +284,11 @@
     <Content Include="Views\Checkout\Checkhout.cshtml" />
     <Content Include="Views\Customers\addCustomer.cshtml" />
     <Content Include="Views\Customers\viewProfile.cshtml" />
-    <Content Include="Views\Product\addProductForm.cshtml" />
     <Content Include="Views\Order\OrderForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

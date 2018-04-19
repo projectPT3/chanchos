@@ -26,5 +26,7 @@ namespace chanchos.Controllers
 
             return View("viewProfile");
         }
+
+      
     }
 }
