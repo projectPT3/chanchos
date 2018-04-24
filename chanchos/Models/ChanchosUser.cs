@@ -12,12 +12,14 @@ namespace chanchos.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class ChanchosUser
     {
-        public int BookingID { get; set; }
-        public string status { get; set; }
-        public Nullable<int> FK_Product_id { get; set; }
-    
-        public virtual Product Product { get; set; }
+        public int userId { get; set; }
+        public string name { get; set; }
+        public string passwords { get; set; }
+        public Nullable<int> age { get; set; }
+        public string address { get; set; }
+        public string phoneNo { get; set; }
+        public string roles { get; set; }
     }
 }
