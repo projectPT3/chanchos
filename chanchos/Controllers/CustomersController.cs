@@ -21,7 +21,7 @@ namespace chanchos.Controllers
         }
 
 
-        public ActionResult viewProfile(Customer C)
+        public ActionResult viewProfile(User C)
         {
 
             return View("viewProfile");

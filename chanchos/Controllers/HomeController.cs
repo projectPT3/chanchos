@@ -37,9 +37,9 @@ namespace chanchos.Controllers
         //}
 
         //[HttpPost]
-        public ActionResult viewProfile(Customer c)
+        public ActionResult viewProfile(User c)
         {
-            Customer cp = new Customer()
+            User cp = new User()
             {
                 name = "Liyana",
                 age = 19,
