@@ -8,14 +8,11 @@ namespace chanchos.Models
 {
     public class Product
     {
-        [Required]
-        public string pid { get; set; }
-        [Required]
-        public string pname { get; set; }
-        [Required]
-        public double price { get; set; }
-
-
-        
+        public int Id { get; set; }
+        public string ProductName { get; set; }
+        public decimal Price { get; set; }
+        public string status { get; set; }
+        public string ProductImage { get; set; }
+  
     }
 }
