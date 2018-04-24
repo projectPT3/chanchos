@@ -25,16 +25,12 @@ namespace chanchos.Controllers
         }
 
         [HttpPost]
-        public ActionResult ViewProduct(Product p)
+        public ActionResult addProduct(Product p)
         {
             
-
-
-                pid = p.pid;
-                pname = p.pname;
-                price = p.price;
-           
-
+            databaseChanchosEntities dbContext = new databaseChanchosEntities();
+            dbContext.Products.Add(p);
+            dbContext.SaveChanges();
             return View(p);
 
         }
