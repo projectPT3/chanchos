@@ -41,7 +41,7 @@ namespace chanchos.Controllers
         {
             Customer cp = new Customer()
             {
-                name = "Nama",
+                name = "Liyana",
                 age = 19,
                 address = "No.99, Jln Mawar",
                 phoneNo = "012345678"
