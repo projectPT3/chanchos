@@ -327,6 +327,7 @@
     <Content Include="Views\Order\OrderForm.cshtml" />
     <Content Include="Views\Product\addProduct.cshtml" />
     <Content Include="Views\Product\ViewProduct.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="image\" />

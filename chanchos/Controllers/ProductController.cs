@@ -13,9 +13,12 @@ namespace chanchos.Controllers
       
 
         // GET: Product
+        [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            databaseChanchosEntities db = new databaseChanchosEntities();
+            var productList = db.Products.ToList();
+            return View(productList);
         }
         [HttpGet]
         public ActionResult addProduct()
