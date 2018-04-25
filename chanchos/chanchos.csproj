@@ -240,7 +240,6 @@
     <Compile Include="Models\Product.cs">
       <DependentUpon>databaseChanchos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\shoppingCart.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />

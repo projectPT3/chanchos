@@ -22,6 +22,7 @@ namespace chanchos.Models
     
         public int orderId { get; set; }
         public int userId { get; set; }
+        public Nullable<decimal> Total { get; set; }
     
         public virtual ChanchosUser ChanchosUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
