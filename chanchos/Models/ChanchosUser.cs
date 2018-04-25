@@ -14,6 +14,12 @@ namespace chanchos.Models
     
     public partial class ChanchosUser
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ChanchosUser()
+        {
+            this.Orders = new HashSet<Order>();
+        }
+    
         public int userId { get; set; }
         public string name { get; set; }
         public string passwords { get; set; }
@@ -21,5 +27,8 @@ namespace chanchos.Models
         public string address { get; set; }
         public string phoneNo { get; set; }
         public string roles { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

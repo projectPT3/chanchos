@@ -5,10 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="0902a7596cdb4b198da8a2363cc7fdd1" Name="Diagram1">
-        <EntityTypeShape EntityType="databaseChanchosModel.ChanchosUser" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="databaseChanchosModel.Order" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="databaseChanchosModel.Product" Width="1.5" PointX="0.75" PointY="1" />
-        <AssociationConnector Association="databaseChanchosModel.FK__Order__FK_Produc__36B12243" />
+        <EntityTypeShape EntityType="databaseChanchosModel.cart" Width="1.5" PointX="3" PointY="5.75" />
+        <EntityTypeShape EntityType="databaseChanchosModel.ChanchosUser" Width="1.5" PointX="1.5" PointY="10.375" />
+        <EntityTypeShape EntityType="databaseChanchosModel.Order" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="databaseChanchosModel.OrderDetail" Width="1.5" PointX="3" PointY="2.5" />
+        <EntityTypeShape EntityType="databaseChanchosModel.Product" Width="1.5" PointX="0.75" PointY="2.375" />
+        <AssociationConnector Association="databaseChanchosModel.FK__cart__productId__49C3F6B7" />
+        <AssociationConnector Association="databaseChanchosModel.FK__Order__userId__5AEE82B9" />
+        <AssociationConnector Association="databaseChanchosModel.FK__OrderDeta__Order__5EBF139D" />
+        <AssociationConnector Association="databaseChanchosModel.FK__OrderDeta__Produ__5FB337D6" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

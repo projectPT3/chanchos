@@ -18,7 +18,8 @@ namespace chanchos.Controllers
         {
             databaseChanchosEntities db = new databaseChanchosEntities();
             var productList = db.Products.ToList();
-            return View(productList);
+            var pList = db.Products.ToList();
+            return View(pList);
         }
         [HttpGet]
         public ActionResult addProduct()

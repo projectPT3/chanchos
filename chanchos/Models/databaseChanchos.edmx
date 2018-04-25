@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="databaseChanchosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cart">
+          <Key>
+            <PropertyRef Name="recordId" />
+          </Key>
+          <Property Name="recordId" Type="int" Nullable="false" />
+          <Property Name="cartId" Type="varchar" MaxLength="50" />
+          <Property Name="productId" Type="int" />
+          <Property Name="date" Type="datetime2" Precision="7" />
+          <Property Name="count" Type="int" />
+        </EntityType>
         <EntityType Name="ChanchosUser">
           <Key>
             <PropertyRef Name="userId" />
@@ -19,11 +29,20 @@
         </EntityType>
         <EntityType Name="Order">
           <Key>
-            <PropertyRef Name="BookingID" />
+            <PropertyRef Name="orderId" />
           </Key>
-          <Property Name="BookingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="status" Type="varchar" MaxLength="10" />
-          <Property Name="FK_Product_id" Type="int" />
+          <Property Name="orderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDetailId" />
+          </Key>
+          <Property Name="OrderDetailId" Type="int" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -36,31 +55,115 @@
           <Property Name="ProductImage" Type="varchar(max)" />
           <Property Name="quantity" Type="int" />
         </EntityType>
-        <Association Name="FK__Order__FK_Produc__36B12243">
+        <Association Name="FK__cart__productId__49C3F6B7">
           <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <End Role="cart" Type="Self.cart" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="Id" />
             </Principal>
+            <Dependent Role="cart">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__userId__5AEE82B9">
+          <End Role="ChanchosUser" Type="Self.ChanchosUser" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChanchosUser">
+              <PropertyRef Name="userId" />
+            </Principal>
             <Dependent Role="Order">
-              <PropertyRef Name="FK_Product_id" />
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Order__5EBF139D">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="orderId" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Produ__5FB337D6">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="ProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="databaseChanchosModelStoreContainer">
+          <EntitySet Name="cart" EntityType="Self.cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChanchosUser" EntityType="Self.ChanchosUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Order__FK_Produc__36B12243" Association="Self.FK__Order__FK_Produc__36B12243">
+          <AssociationSet Name="FK__cart__productId__49C3F6B7" Association="Self.FK__cart__productId__49C3F6B7">
             <End Role="Product" EntitySet="Product" />
+            <End Role="cart" EntitySet="cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__userId__5AEE82B9" Association="Self.FK__Order__userId__5AEE82B9">
+            <End Role="ChanchosUser" EntitySet="ChanchosUser" />
             <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Order__5EBF139D" Association="Self.FK__OrderDeta__Order__5EBF139D">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Produ__5FB337D6" Association="Self.FK__OrderDeta__Produ__5FB337D6">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="databaseChanchosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="databaseChanchosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="carts" EntityType="databaseChanchosModel.cart" />
+          <EntitySet Name="ChanchosUsers" EntityType="databaseChanchosModel.ChanchosUser" />
+          <EntitySet Name="Orders" EntityType="databaseChanchosModel.Order" />
+          <EntitySet Name="OrderDetails" EntityType="databaseChanchosModel.OrderDetail" />
+          <EntitySet Name="Products" EntityType="databaseChanchosModel.Product" />
+          <AssociationSet Name="FK__cart__productId__49C3F6B7" Association="databaseChanchosModel.FK__cart__productId__49C3F6B7">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="cart" EntitySet="carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__userId__5AEE82B9" Association="databaseChanchosModel.FK__Order__userId__5AEE82B9">
+            <End Role="ChanchosUser" EntitySet="ChanchosUsers" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Order__5EBF139D" Association="databaseChanchosModel.FK__OrderDeta__Order__5EBF139D">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Produ__5FB337D6" Association="databaseChanchosModel.FK__OrderDeta__Produ__5FB337D6">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="cart">
+          <Key>
+            <PropertyRef Name="recordId" />
+          </Key>
+          <Property Name="recordId" Type="Int32" Nullable="false" />
+          <Property Name="cartId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="productId" Type="Int32" />
+          <Property Name="date" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="Product" Relationship="databaseChanchosModel.FK__cart__productId__49C3F6B7" FromRole="cart" ToRole="Product" />
+          <Property Name="count" Type="Int32" />
+        </EntityType>
         <EntityType Name="ChanchosUser">
           <Key>
             <PropertyRef Name="userId" />
@@ -72,25 +175,29 @@
           <Property Name="address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="phoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="roles" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Orders" Relationship="databaseChanchosModel.FK__Order__userId__5AEE82B9" FromRole="ChanchosUser" ToRole="Order" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
-            <PropertyRef Name="BookingID" />
+            <PropertyRef Name="orderId" />
           </Key>
-          <Property Name="BookingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Product_id" Type="Int32" />
-          <NavigationProperty Name="Product" Relationship="databaseChanchosModel.FK__Order__FK_Produc__36B12243" FromRole="Order" ToRole="Product" />
+          <Property Name="orderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ChanchosUser" Relationship="databaseChanchosModel.FK__Order__userId__5AEE82B9" FromRole="Order" ToRole="ChanchosUser" />
+          <NavigationProperty Name="OrderDetails" Relationship="databaseChanchosModel.FK__OrderDeta__Order__5EBF139D" FromRole="Order" ToRole="OrderDetail" />
         </EntityType>
-        <EntityContainer Name="databaseChanchosEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="ChanchosUsers" EntityType="Self.ChanchosUser" />
-          <EntitySet Name="Orders" EntityType="Self.Order" />
-          <EntitySet Name="Products" EntityType="databaseChanchosModel.Product" />
-          <AssociationSet Name="FK__Order__FK_Produc__36B12243" Association="databaseChanchosModel.FK__Order__FK_Produc__36B12243">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
-        </EntityContainer>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDetailId" />
+          </Key>
+          <Property Name="OrderDetailId" Type="Int32" Nullable="false" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="UnitPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="Order" Relationship="databaseChanchosModel.FK__OrderDeta__Order__5EBF139D" FromRole="OrderDetail" ToRole="Order" />
+          <NavigationProperty Name="Product" Relationship="databaseChanchosModel.FK__OrderDeta__Produ__5FB337D6" FromRole="OrderDetail" ToRole="Product" />
+        </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
@@ -101,17 +208,54 @@
           <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="ProductImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="quantity" Type="Int32" />
-          <NavigationProperty Name="Orders" Relationship="databaseChanchosModel.FK__Order__FK_Produc__36B12243" FromRole="Product" ToRole="Order" />
+          <NavigationProperty Name="carts" Relationship="databaseChanchosModel.FK__cart__productId__49C3F6B7" FromRole="Product" ToRole="cart" />
+          <NavigationProperty Name="OrderDetails" Relationship="databaseChanchosModel.FK__OrderDeta__Produ__5FB337D6" FromRole="Product" ToRole="OrderDetail" />
         </EntityType>
-        <Association Name="FK__Order__FK_Produc__36B12243">
+        <Association Name="FK__cart__productId__49C3F6B7">
           <End Type="databaseChanchosModel.Product" Role="Product" Multiplicity="0..1" />
-          <End Type="databaseChanchosModel.Order" Role="Order" Multiplicity="*" />
+          <End Type="databaseChanchosModel.cart" Role="cart" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="Id" />
             </Principal>
+            <Dependent Role="cart">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__userId__5AEE82B9">
+          <End Type="databaseChanchosModel.ChanchosUser" Role="ChanchosUser" Multiplicity="1" />
+          <End Type="databaseChanchosModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChanchosUser">
+              <PropertyRef Name="userId" />
+            </Principal>
             <Dependent Role="Order">
-              <PropertyRef Name="FK_Product_id" />
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Order__5EBF139D">
+          <End Type="databaseChanchosModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="databaseChanchosModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="orderId" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Produ__5FB337D6">
+          <End Type="databaseChanchosModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="databaseChanchosModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="ProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -121,25 +265,46 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="databaseChanchosModelStoreContainer" CdmEntityContainer="databaseChanchosEntities">
+          <EntitySetMapping Name="carts">
+            <EntityTypeMapping TypeName="databaseChanchosModel.cart">
+              <MappingFragment StoreEntitySet="cart">
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="cartId" ColumnName="cartId" />
+                <ScalarProperty Name="recordId" ColumnName="recordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ChanchosUsers">
             <EntityTypeMapping TypeName="databaseChanchosModel.ChanchosUser">
               <MappingFragment StoreEntitySet="ChanchosUser">
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="passwords" ColumnName="passwords" />
-                <ScalarProperty Name="age" ColumnName="age" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="phoneNo" ColumnName="phoneNo" />
                 <ScalarProperty Name="roles" ColumnName="roles" />
+                <ScalarProperty Name="phoneNo" ColumnName="phoneNo" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="passwords" ColumnName="passwords" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="databaseChanchosModel.Order">
               <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="FK_Product_id" ColumnName="FK_Product_id" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="databaseChanchosModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetail">
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="OrderDetailId" ColumnName="OrderDetailId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

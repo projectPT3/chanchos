@@ -14,10 +14,17 @@ namespace chanchos.Models
     
     public partial class Order
     {
-        public int BookingID { get; set; }
-        public string status { get; set; }
-        public Nullable<int> FK_Product_id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Order()
+        {
+            this.OrderDetails = new HashSet<OrderDetail>();
+        }
     
-        public virtual Product Product { get; set; }
+        public int orderId { get; set; }
+        public int userId { get; set; }
+    
+        public virtual ChanchosUser ChanchosUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

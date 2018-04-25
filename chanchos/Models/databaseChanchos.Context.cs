@@ -25,8 +25,10 @@ namespace chanchos.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<cart> carts { get; set; }
         public virtual DbSet<ChanchosUser> ChanchosUsers { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Product> Products { get; set; }
     }
 }
