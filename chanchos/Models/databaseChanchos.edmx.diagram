@@ -7,8 +7,8 @@
       <Diagram DiagramId="0902a7596cdb4b198da8a2363cc7fdd1" Name="Diagram1">
         <EntityTypeShape EntityType="databaseChanchosModel.ChanchosUser" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="databaseChanchosModel.Order" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="databaseChanchosModel.Product" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="databaseChanchosModel.FK__Order__FK_Produc__276EDEB3" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="databaseChanchosModel.Product" Width="1.5" PointX="0.75" PointY="1" />
+        <AssociationConnector Association="databaseChanchosModel.FK__Order__FK_Produc__36B12243" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,9 +10,7 @@ namespace chanchos.Controllers
 {
     public class ProductController : Controller
     {
-        private string pid;
-        private string pname;
-        private double price;
+      
 
         // GET: Product
         public ActionResult Index()
@@ -27,11 +26,23 @@ namespace chanchos.Controllers
         [HttpPost]
         public ActionResult addProduct(Product p)
         {
-            
-            databaseChanchosEntities dbContext = new databaseChanchosEntities();
-            dbContext.Products.Add(p);
-            dbContext.SaveChanges();
-            return View(p);
+            string fileName = Path.GetFileNameWithoutExtension(p.ImageFile.FileName);
+            string extension = Path.GetExtension(p.ImageFile.FileName);
+            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            p.ProductImage = "~/image/" + fileName;
+            fileName = Path.Combine(Server.MapPath("~/image/"), fileName);
+            p.ImageFile.SaveAs(fileName);
+            using (databaseChanchosEntities db = new databaseChanchosEntities())
+            {
+                db.Products.Add(p);
+                db.SaveChanges();
+            }
+            ModelState.Clear();
+
+            //    databaseChanchosEntities dbContext = new databaseChanchosEntities();
+            //dbContext.Products.Add(p);
+            //dbContext.SaveChanges();
+            return View();
 
         }
     }

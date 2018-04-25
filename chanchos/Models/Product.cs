@@ -11,7 +11,7 @@ namespace chanchos.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,9 +24,9 @@ namespace chanchos.Models
         public string ProductName { get; set; }
         public Nullable<decimal> Price { get; set; }
         public string status { get; set; }
-        public byte[] ProductImage { get; set; }
+        public string ProductImage { get; set; }
         public Nullable<int> quantity { get; set; }
-    
+        public HttpPostedFileBase ImageFile { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
     }

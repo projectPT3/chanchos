@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="databaseChanchosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="databaseChanchosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ChanchosUser">
           <Key>
             <PropertyRef Name="userId" />
@@ -33,10 +33,10 @@
           <Property Name="ProductName" Type="varchar" MaxLength="50" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
           <Property Name="status" Type="varchar" MaxLength="10" />
-          <Property Name="ProductImage" Type="varbinary(max)" />
+          <Property Name="ProductImage" Type="varchar(max)" />
           <Property Name="quantity" Type="int" />
         </EntityType>
-        <Association Name="FK__Order__FK_Produc__276EDEB3">
+        <Association Name="FK__Order__FK_Produc__36B12243">
           <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -52,13 +52,12 @@
           <EntitySet Name="ChanchosUser" EntityType="Self.ChanchosUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Order__FK_Produc__276EDEB3" Association="Self.FK__Order__FK_Produc__276EDEB3">
+          <AssociationSet Name="FK__Order__FK_Produc__36B12243" Association="Self.FK__Order__FK_Produc__36B12243">
             <End Role="Product" EntitySet="Product" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="databaseChanchosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -81,8 +80,17 @@
           <Property Name="BookingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="FK_Product_id" Type="Int32" />
-          <NavigationProperty Name="Product" Relationship="Self.FK__Order__FK_Produc__276EDEB3" FromRole="Order" ToRole="Product" />
+          <NavigationProperty Name="Product" Relationship="databaseChanchosModel.FK__Order__FK_Produc__36B12243" FromRole="Order" ToRole="Product" />
         </EntityType>
+        <EntityContainer Name="databaseChanchosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ChanchosUsers" EntityType="Self.ChanchosUser" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Products" EntityType="databaseChanchosModel.Product" />
+          <AssociationSet Name="FK__Order__FK_Produc__36B12243" Association="databaseChanchosModel.FK__Order__FK_Produc__36B12243">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
@@ -91,13 +99,13 @@
           <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="ProductImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="quantity" Type="Int32" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__Order__FK_Produc__276EDEB3" FromRole="Product" ToRole="Order" />
+          <NavigationProperty Name="Orders" Relationship="databaseChanchosModel.FK__Order__FK_Produc__36B12243" FromRole="Product" ToRole="Order" />
         </EntityType>
-        <Association Name="FK__Order__FK_Produc__276EDEB3">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+        <Association Name="FK__Order__FK_Produc__36B12243">
+          <End Type="databaseChanchosModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="databaseChanchosModel.Order" Role="Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="Id" />
@@ -107,15 +115,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="databaseChanchosEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="ChanchosUsers" EntityType="Self.ChanchosUser" />
-          <EntitySet Name="Orders" EntityType="Self.Order" />
-          <EntitySet Name="Products" EntityType="Self.Product" />
-          <AssociationSet Name="FK__Order__FK_Produc__276EDEB3" Association="Self.FK__Order__FK_Produc__276EDEB3">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -147,12 +146,12 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="databaseChanchosModel.Product">
               <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

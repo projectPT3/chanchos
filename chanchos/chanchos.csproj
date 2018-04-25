@@ -228,13 +228,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>databaseChanchos.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>databaseChanchos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order.cs">
-      <DependentUpon>databaseChanchos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Product.cs">
       <DependentUpon>databaseChanchos.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -329,6 +329,7 @@
     <Content Include="Views\Product\ViewProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="image\" />
     <Folder Include="Views\Customers\" />
   </ItemGroup>
   <ItemGroup>
