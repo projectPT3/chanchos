@@ -1,0 +1,33 @@
+﻿@model chanchos.Models.Order
+
+@{
+    ViewBag.Title = "checkout";
+}
+
+<h2>checkout</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChanchosUser.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChanchosUser.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+  
+</p>

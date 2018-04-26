@@ -333,11 +333,12 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Checkout\Checkhout.cshtml" />
-    <Content Include="Views\Order\OrderForm.cshtml" />
     <Content Include="Views\Product\addProduct.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\ViewProfile.cshtml" />
+    <Content Include="Views\Order\Order.cshtml" />
+    <Content Include="Views\Order\checkout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="image\" />

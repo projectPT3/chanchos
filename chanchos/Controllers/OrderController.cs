@@ -15,15 +15,18 @@ namespace chanchos.Controllers
             return View();
         }
 
-        public ActionResult makeOrder()
+        [HttpGet]
+        public ActionResult Order(Order P)
         {
-            return View("OrderForm");
+            return View();
         }
 
-        public ActionResult makeOrder(Order o)
+        public ActionResult checkout()
         {
-            Order O = new Order();
-            return View(O);
+            return View();
+
         }
+
+     
     }
 }
