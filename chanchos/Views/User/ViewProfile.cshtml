@@ -1,0 +1,65 @@
+﻿@model chanchos.Models.ChanchosUser
+
+@{
+    ViewBag.Title = "ViewProfile";
+}
+
+<h2>ViewProfile</h2>
+
+<div>
+    <h4>ChanchosUser</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.passwords)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.passwords)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phoneNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phoneNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.roles)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.roles)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.userId }) |
+</p>

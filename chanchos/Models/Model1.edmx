@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="testModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="carts">
+          <Key>
+            <PropertyRef Name="recordId" />
+          </Key>
+          <Property Name="recordId" Type="int" Nullable="false" />
+          <Property Name="cartId" Type="varchar" MaxLength="50" />
+          <Property Name="productId" Type="int" />
+          <Property Name="date" Type="datetime" />
+          <Property Name="count" Type="int" />
+        </EntityType>
+        <EntityType Name="ChanchosUsers">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="passwords" Type="varchar" MaxLength="6" />
+          <Property Name="age" Type="int" />
+          <Property Name="address" Type="varchar" MaxLength="30" />
+          <Property Name="phoneNo" Type="varchar" MaxLength="50" />
+          <Property Name="roles" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderDetailId" />
+          </Key>
+          <Property Name="OrderDetailId" Type="int" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="orderId" />
+          </Key>
+          <Property Name="orderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="50" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="status" Type="varchar" MaxLength="10" />
+          <Property Name="ProductImage" Type="varchar(max)" />
+          <Property Name="quantity" Type="int" />
+        </EntityType>
+        <Association Name="FK__cart__productId__49C3F6B7">
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+          <End Role="carts" Type="Self.carts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="carts">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__userId__5AEE82B9">
+          <End Role="ChanchosUsers" Type="Self.ChanchosUsers" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChanchosUsers">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Order__5EBF139D">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="orderId" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Produ__5FB337D6">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="testModelStoreContainer">
+          <EntitySet Name="carts" EntityType="Self.carts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChanchosUsers" EntityType="Self.ChanchosUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__cart__productId__49C3F6B7" Association="Self.FK__cart__productId__49C3F6B7">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="carts" EntitySet="carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__userId__5AEE82B9" Association="Self.FK__Order__userId__5AEE82B9">
+            <End Role="ChanchosUsers" EntitySet="ChanchosUsers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Order__5EBF139D" Association="Self.FK__OrderDeta__Order__5EBF139D">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Produ__5FB337D6" Association="Self.FK__OrderDeta__Produ__5FB337D6">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="testModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cart">
+          <Key>
+            <PropertyRef Name="recordId" />
+          </Key>
+          <Property Name="recordId" Type="Int32" Nullable="false" />
+          <Property Name="cartId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="productId" Type="Int32" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="count" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__cart__productId__49C3F6B7" FromRole="carts" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="ChanchosUser">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="passwords" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="age" Type="Int32" />
+          <Property Name="address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="phoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="roles" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Order__userId__5AEE82B9" FromRole="ChanchosUsers" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDetailId" />
+          </Key>
+          <Property Name="OrderDetailId" Type="Int32" Nullable="false" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK__OrderDeta__Order__5EBF139D" FromRole="OrderDetails" ToRole="Orders" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__OrderDeta__Produ__5FB337D6" FromRole="OrderDetails" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="orderId" />
+          </Key>
+          <Property Name="orderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="ChanchosUser" Relationship="Self.FK__Order__userId__5AEE82B9" FromRole="Orders" ToRole="ChanchosUsers" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Order__5EBF139D" FromRole="Orders" ToRole="OrderDetails" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ProductImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="quantity" Type="Int32" />
+          <NavigationProperty Name="carts" Relationship="Self.FK__cart__productId__49C3F6B7" FromRole="Products" ToRole="carts" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Produ__5FB337D6" FromRole="Products" ToRole="OrderDetails" />
+        </EntityType>
+        <Association Name="FK__cart__productId__49C3F6B7">
+          <End Role="Products" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="carts" Type="Self.cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="carts">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__userId__5AEE82B9">
+          <End Role="ChanchosUsers" Type="Self.ChanchosUser" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChanchosUsers">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Order__5EBF139D">
+          <End Role="Orders" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="orderId" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Produ__5FB337D6">
+          <End Role="Products" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="testEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="carts" EntityType="Self.cart" />
+          <EntitySet Name="ChanchosUsers" EntityType="Self.ChanchosUser" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <AssociationSet Name="FK__cart__productId__49C3F6B7" Association="Self.FK__cart__productId__49C3F6B7">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="carts" EntitySet="carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__userId__5AEE82B9" Association="Self.FK__Order__userId__5AEE82B9">
+            <End Role="ChanchosUsers" EntitySet="ChanchosUsers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Order__5EBF139D" Association="Self.FK__OrderDeta__Order__5EBF139D">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Produ__5FB337D6" Association="Self.FK__OrderDeta__Produ__5FB337D6">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="testModelStoreContainer" CdmEntityContainer="testEntities">
+          <EntitySetMapping Name="carts">
+            <EntityTypeMapping TypeName="testModel.cart">
+              <MappingFragment StoreEntitySet="carts">
+                <ScalarProperty Name="recordId" ColumnName="recordId" />
+                <ScalarProperty Name="cartId" ColumnName="cartId" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="count" ColumnName="count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChanchosUsers">
+            <EntityTypeMapping TypeName="testModel.ChanchosUser">
+              <MappingFragment StoreEntitySet="ChanchosUsers">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="passwords" ColumnName="passwords" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phoneNo" ColumnName="phoneNo" />
+                <ScalarProperty Name="roles" ColumnName="roles" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="testModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="OrderDetailId" ColumnName="OrderDetailId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="testModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="testModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

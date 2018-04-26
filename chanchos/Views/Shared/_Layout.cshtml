@@ -21,21 +21,36 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
 
+                   @if (User.Identity.IsAuthenticated)
+                   {
+                       if (User.IsInRole("Admin"))
+                       {
+                        <li>@Html.ActionLink("Product Management", "addProduct", "Product")</li>
+                        <li>@Html.ActionLink("User Management", "Index", "User")</li>
+                       }
 
-                    
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                       else if (User.IsInRole("RegisteredUser"))
+                       {
+                        <li>@Html.ActionLink("Order Management ", "ManageStaff", "Order")</li>
+                        <li>@Html.ActionLink("Cart", "Action001", "Controller001")</li>
+                       }
+
                     <li>@Html.ActionLink("Products", "Index", "Product")</li>
-                    <li>@Html.ActionLink("Product Management", "addProduct","Product")</li>
-                    <li>@Html.ActionLink("Staff Management", "ManageStaff", "Admin")</li>
-                    <li>@Html.ActionLink("Order Management ", "ManageStaff", "Admin")</li>
+                    <li>@Html.ActionLink("Profile", "ViewProfile", "User")</li>
+                    <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                   }
+
+                   else
+                   {
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>                    
+                    <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                   
+                   
+                   }
 
                 </ul>  
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>@Html.ActionLink("Cart", "Action001", "Controller001")</li>
-                        <li>@Html.ActionLink("Login", "Login", "Account")</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
-                    </ul>
+                  
 
 
               

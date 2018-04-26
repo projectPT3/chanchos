@@ -27,6 +27,7 @@ namespace chanchos.Models
         public string status { get; set; }
         public string ProductImage { get; set; }
         public Nullable<int> quantity { get; set; }
+    
         public HttpPostedFileBase ImageFile { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cart> carts { get; set; }

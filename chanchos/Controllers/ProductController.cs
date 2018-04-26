@@ -22,12 +22,14 @@ namespace chanchos.Controllers
             return View(pList);
         }
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult addProduct()
         {
             return View("addProduct");
         }
 
         [HttpPost]
+       
         public ActionResult addProduct(Product p)
         {
             string fileName = Path.GetFileNameWithoutExtension(p.ImageFile.FileName);
@@ -36,10 +38,10 @@ namespace chanchos.Controllers
             p.ProductImage = "~/image/" + fileName;
             fileName = Path.Combine(Server.MapPath("~/image/"), fileName);
             p.ImageFile.SaveAs(fileName);
-            using (databaseChanchosEntities db = new databaseChanchosEntities())
+            using (databaseChanchosEntities dl = new databaseChanchosEntities())
             {
-                db.Products.Add(p);
-                db.SaveChanges();
+                dl.Products.Add(p);
+                dl.SaveChanges();
             }
             ModelState.Clear();
 

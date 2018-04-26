@@ -199,11 +199,11 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
-    <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
@@ -265,6 +265,7 @@
       <DependentUpon>databaseChanchos.edmx</DependentUpon>
       <LastGenOutput>databaseChanchos.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\databaseChanchos.edmx.sql" />
     <Content Include="Models\databaseChanchos.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>databaseChanchos.edmx</DependentUpon>
@@ -296,7 +297,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -332,12 +335,12 @@
     <Content Include="Views\Checkout\Checkhout.cshtml" />
     <Content Include="Views\Order\OrderForm.cshtml" />
     <Content Include="Views\Product\addProduct.cshtml" />
-    <Content Include="Views\Product\ViewProduct.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\ViewProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="image\" />
-    <Folder Include="Views\Customers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -364,7 +367,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2329</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

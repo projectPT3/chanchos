@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3cb45dcc2ff84792a41842730c6b10f1" Name="Diagram1">
+        <EntityTypeShape EntityType="testModel.cart" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.ChanchosUser" Width="1.5" PointX="1.5" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.OrderDetail" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Order" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.Product" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="testModel.FK__cart__productId__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="testModel.FK__Order__userId__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="testModel.FK__OrderDeta__Order__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="testModel.FK__OrderDeta__Produ__5FB337D6" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

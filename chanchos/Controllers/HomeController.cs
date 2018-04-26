@@ -7,6 +7,7 @@ using chanchos.Models;
 
 namespace chanchos.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -28,29 +29,7 @@ namespace chanchos.Controllers
             return View();
         }
 
-        //[HttpGet]
-        //public ActionResult viewProfile()
-        //{
-        //    ViewBag.Message = "Bawal to purchase:";
-
-        //    return View("viewProfile");
-        //}
-
-        //[HttpPost]
-        public ActionResult viewProfile(User c)
-        {
-            User cp = new User()
-            {
-                name = "Liyana",
-                age = 19,
-                address = "No.99, Jln Mawar",
-                phoneNo = "012345678"
-
-            };
-
-            return View(cp);
-
-
-        }
+     
+  
     }
 }
