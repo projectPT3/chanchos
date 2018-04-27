@@ -23,7 +23,7 @@ namespace chanchos.Models
         public int userId { get; set; }
         public string name { get; set; }
         public string passwords { get; set; }
-        public Nullable<int> age { get; set; }
+        public int age { get; set; }
         public string address { get; set; }
         public string phoneNo { get; set; }
         public string roles { get; set; }

@@ -202,6 +202,23 @@
     <Compile Include="Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
+    <Compile Include="Models\cart.cs">
+      <DependentUpon>databaseChanchos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChanchosUser.cs">
+      <DependentUpon>databaseChanchos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>databaseChanchos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderDetail.cs">
+      <DependentUpon>databaseChanchos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>databaseChanchos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\ShoppingCartRemoveViewModel.cs" />
+    <Compile Include="Controllers\ShoppingController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
@@ -210,12 +227,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\cart.cs">
-      <DependentUpon>databaseChanchos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ChanchosUser.cs">
-      <DependentUpon>databaseChanchos.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\databaseChanchos.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -231,20 +242,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>databaseChanchos.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Order.cs">
-      <DependentUpon>databaseChanchos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\OrderDetail.cs">
-      <DependentUpon>databaseChanchos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Product.cs">
-      <DependentUpon>databaseChanchos.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\ShoppingCart.cs" />
+    <Compile Include="Models\ShoppingItem.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\ShoppingCartViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\database.mdf" />
@@ -339,6 +344,8 @@
     <Content Include="Views\User\ViewProfile.cshtml" />
     <Content Include="Views\Order\Order.cshtml" />
     <Content Include="Views\Order\checkout.cshtml" />
+    <Content Include="Views\Shopping\Index.cshtml" />
+    <Content Include="Views\Home\SuccesLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="image\" />

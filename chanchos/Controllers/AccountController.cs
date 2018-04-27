@@ -25,17 +25,21 @@ namespace chanchos.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(ChanchosUser CU)
+        public ActionResult Login(ChanchosUser au)
         {
             //connect to database 
-            databaseChanchosEntities _dbContext = new databaseChanchosEntities();
+            //databaseChanchosEntities _dbContext = new databaseChanchosEntities();
             //compare CU vs chanchosUser Table
-            ChanchosUser match = (from x in _dbContext.ChanchosUsers
-                                  where (x.name == CU.name && x.passwords == x.passwords)
-                                  select x).SingleOrDefault();
+            //ChanchosUser match = (from a in _dbContext.ChanchosUsers
+            //                      where (a.name == CU.name && a.passwords == a.passwords)
+            //                      select a).SingleOrDefault();
             //check existent
+            databaseChanchosEntities db = new databaseChanchosEntities();
+            var match = (from x in db.ChanchosUsers
+                         where (x.name == au.name && x.passwords == au.passwords)
+                         select x).SingleOrDefault();
 
-            if(match==null)
+            if (match==null)
             {
                 ViewBag.errMessage = "Invalid Login";
                 return View();
@@ -43,11 +47,11 @@ namespace chanchos.Controllers
 
             else
             {
-                FormsAuthentication.SetAuthCookie(CU.name, false);
+                FormsAuthentication.SetAuthCookie(au.name, false);
                 return RedirectToAction("Index", "Home");
             }
 
-            return View();
+          
         
      
         }

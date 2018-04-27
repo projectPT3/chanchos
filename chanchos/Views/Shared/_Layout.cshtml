@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -21,39 +22,39 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
 
-                   @if (User.Identity.IsAuthenticated)
-                   {
-                       if (User.IsInRole("Admin"))
-                       {
-                        <li>@Html.ActionLink("Product Management", "addProduct", "Product")</li>
-                        <li>@Html.ActionLink("User Management", "Index", "User")</li>
-                       }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li>@Html.ActionLink("Product Management", "addProduct", "Product")</li>
+                            <li>@Html.ActionLink("User Management", "Index", "User")</li>
+                        }
 
-                       else if (User.IsInRole("RegisteredUser"))
-                       {
-                        <li>@Html.ActionLink("Order Management ", "ManageStaff", "Order")</li>
-                        <li>@Html.ActionLink("Cart", "Action001", "Controller001")</li>
-                       }
+                        else if (User.IsInRole("RegisteredUser"))
+                        {
+                            <li>@Html.ActionLink("Order Management ", "ManageStaff", "Order")</li>
+                            <li>@Html.ActionLink("Cart", "Action001", "Controller001")</li>
+                        }
 
-                    <li>@Html.ActionLink("Products", "Index", "Product")</li>
-                    <li>@Html.ActionLink("Profile", "ViewProfile", "User")</li>
-                    <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
-                   }
+                        <li>@Html.ActionLink("Products", "Index", "Product")</li>
+                        <li>@Html.ActionLink("Profile", "ViewProfile", "User")</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                    }
 
-                   else
-                   {
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>                    
-                    <li>@Html.ActionLink("Login", "Login", "Account")</li>
-                   
-                   
-                   }
-
-                </ul>  
-
-                  
+                    else
+                    {
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Login", "Login", "Account")</li>
 
 
-              
+                    }
+
+                </ul>
+
+
+
+
+
             </div>
         </div>
     </div>

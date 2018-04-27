@@ -16,9 +16,9 @@ namespace chanchos.Models
     {
         public int recordId { get; set; }
         public string cartId { get; set; }
-        public Nullable<int> productId { get; set; }
-        public Nullable<System.DateTime> date { get; set; }
-        public Nullable<int> count { get; set; }
+        public System.DateTime date { get; set; }
+        public int count { get; set; }
+        public int productId { get; set; }
     
         public virtual Product Product { get; set; }
     }
